@@ -26,7 +26,7 @@ categoriaRoutes.get('/', function (req, resp) {
 categoriaRoutes.post('', function (req, resp) {
     var categoria = {
         nombre: req.body.nombre,
-        valoracion: req.body.valoracion,
+        raiz: req.body.raiz,
         idCategoriasHijas: req.body.idCategoriasHijas
     };
     categoria_model_1.Categoria.create(categoria)
@@ -39,7 +39,7 @@ categoriaRoutes.put('', function (req, resp) {
         if (err)
             throw err;
         if (!categoriaDB) {
-            resp.json({ ok: false, mensaje: "No existe una persona con ese ID" });
+            resp.json({ ok: false, mensaje: "No existe una categoria con ese ID" });
         }
         else {
             resp.json({ ok: true, mensaje: categoriaDB });
@@ -51,7 +51,7 @@ categoriaRoutes.delete('', function (req, resp) {
         if (err)
             throw err;
         if (!categoriaDB) {
-            resp.json({ ok: false, mensaje: "No existe una persona con ese ID" });
+            resp.json({ ok: false, mensaje: "No existe una categoria con ese ID" });
         }
         else {
             resp.json({ ok: true, mensaje: categoriaDB });

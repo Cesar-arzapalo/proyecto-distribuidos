@@ -40,7 +40,7 @@ categoriaRoutes.post('' , (req, resp)=>{
     
     const categoria = {
         nombre              : req.body.nombre,
-        valoracion          : req.body.valoracion,
+        raiz                : req.body.raiz,
         idCategoriasHijas   : req.body.idCategoriasHijas
     };  
 
@@ -56,7 +56,7 @@ categoriaRoutes.put('' , (req, resp)=>{
     Categoria.findByIdAndUpdate(req.query.id, query, {new: true}, (err, categoriaDB) => {
         if ( err ) throw err;
         if (!categoriaDB) {
-            resp.json({ok: false, mensaje: "No existe una persona con ese ID" });
+            resp.json({ok: false, mensaje: "No existe una categoria con ese ID" });
         } else {
             resp.json({ok: true, mensaje: categoriaDB });
         }
@@ -70,7 +70,7 @@ categoriaRoutes.delete('' , (req, resp)=>{
     Categoria.findByIdAndDelete(req.query.id, (err: any, categoriaDB: any) => {
         if ( err ) throw err;
         if (!categoriaDB) {
-            resp.json({ok: false, mensaje: "No existe una persona con ese ID" });
+            resp.json({ok: false, mensaje: "No existe una categoria con ese ID" });
         } else {
             resp.json({ok: true, mensaje: categoriaDB });
         }
