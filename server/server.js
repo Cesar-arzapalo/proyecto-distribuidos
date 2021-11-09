@@ -7,7 +7,7 @@ exports.Server = void 0;
 var express_1 = __importDefault(require("express"));
 var Server = /** @class */ (function () {
     function Server(port) {
-        this.port = port;
+        this.port = +process.env.PORT || port;
         this.app = (0, express_1.default)();
     }
     Server.prototype.start = function (callback) {
