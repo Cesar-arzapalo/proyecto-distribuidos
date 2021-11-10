@@ -2,6 +2,13 @@
     "name": "server_marketpalce",
     "description": "servidor del marketplace de emark",
     "version": "1.0.0",
+    "dependencies": {
+        "express": "4.17.1",
+        "@types/body-parser":"1.19.1",
+        "body-parser":"1.19.0",
+        "mongoose":"6.0.12",
+        "jshint":"2.13.1"
+    },
     "engines": {
       "node": "14.16.0",
       "npm": "6.14.11"
