@@ -7,6 +7,7 @@ import categoriaRoutes from './routes/categoria.route';
 import pedidoRoutes from './routes/pedido.route';
 import productoRoutes from './routes/producto.route';
 import proveedorRoutes from './routes/proveedor.route';
+import cors  from 'cors';
 
 
 const PORT = +process.env.PORT! || 3200;
@@ -14,6 +15,10 @@ const servidor = new Server(PORT);
 //Body parser
 servidor.app.use(bodyParser.urlencoded({extended:true}));
 servidor.app.use(bodyParser.json());
+
+//Cors 
+
+servidor.app.use(cors());
 
 //rutas del app
 servidor.app.use('/categoria', categoriaRoutes);

@@ -10,11 +10,14 @@ var categoria_route_1 = __importDefault(require("./routes/categoria.route"));
 var pedido_route_1 = __importDefault(require("./routes/pedido.route"));
 var producto_route_1 = __importDefault(require("./routes/producto.route"));
 var proveedor_route_1 = __importDefault(require("./routes/proveedor.route"));
+var cors_1 = __importDefault(require("cors"));
 var PORT = +process.env.PORT || 3200;
 var servidor = new server_1.Server(PORT);
 //Body parser
 servidor.app.use(body_parser_1.default.urlencoded({ extended: true }));
 servidor.app.use(body_parser_1.default.json());
+//Cors 
+servidor.app.use((0, cors_1.default)());
 //rutas del app
 servidor.app.use('/categoria', categoria_route_1.default);
 servidor.app.use('/pedido', pedido_route_1.default);
