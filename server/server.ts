@@ -5,7 +5,7 @@ export class  Server {
      public port: number;
 
      constructor (port: number){
-         this.port = +process.env.PORT! || port;
+         this.port = port;
          this.app = express();
      }
 

@@ -9,8 +9,8 @@ import productoRoutes from './routes/producto.route';
 import proveedorRoutes from './routes/proveedor.route';
 
 
-
-const servidor = new Server(2800);
+const PORT = +process.env.PORT! || 3200;
+const servidor = new Server(PORT);
 //Body parser
 servidor.app.use(bodyParser.urlencoded({extended:true}));
 servidor.app.use(bodyParser.json());
