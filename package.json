@@ -1,6 +1,6 @@
 {
-    "name": "server marketppalce",
-    "description": "a really cool app",
+    "name": "server_marketpalce",
+    "description": "servidor del marketplace de emark",
     "version": "1.0.0",
     "engines": {
       "node": "14.16.0",
