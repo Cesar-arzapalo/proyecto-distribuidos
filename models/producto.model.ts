@@ -1,4 +1,5 @@
 import {Schema, model, Document} from 'mongoose';
+import { comentarioSchema, IComentario } from './schema/comentario.schema';
 
 const productoSchema  =new Schema({
     nombre: {
@@ -44,6 +45,10 @@ const productoSchema  =new Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
+    },
+    comentarios: {
+        type: [comentarioSchema],
+        required: [true, 'El arreglo de comentarios de los productos es necesario para la entidad Producto']
     }
 });
 
@@ -59,6 +64,7 @@ interface IProducto extends Document {
     idCategoria: String;
     idProveedor: String;
     imagenes: Array<String>;
+    comentarios: Array <IComentario>
 };
 
 export const Producto = model<IProducto>('producto', productoSchema);

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Pedido = void 0;
 var mongoose_1 = require("mongoose");
+var cliente_model_1 = require("./cliente.model");
 var productoReferncia = new mongoose_1.Schema({
     referencia: {
         type: String,
@@ -21,8 +22,8 @@ var pedidoSchema = new mongoose_1.Schema({
         type: [productoReferncia],
         required: [true, 'El Nombre es necesario para la entidad Pedido']
     },
-    usuario: {
-        type: String,
+    cliente: {
+        type: cliente_model_1.clienteSchema,
         required: [true, 'El nombre del usuario es necesario para la entidad Pedido']
     }
 });

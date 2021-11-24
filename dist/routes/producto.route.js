@@ -39,6 +39,9 @@ var getProductoQuery = function (req) {
     if (req.query.imagenes != null) {
         query.imagenes = Array(req.query.imagenes);
     }
+    if (req.query.comentarios != null) {
+        query.comentarios = Array(req.query.comentarios);
+    }
     return query;
 };
 productoRoutes.get('/', function (req, resp) {
@@ -59,7 +62,8 @@ productoRoutes.post('', function (req, resp) {
         visitas: req.body.visitas,
         idCategoria: req.body.idCategoria,
         idProveedor: req.body.idProveedor,
-        imagenes: req.body.imagenes
+        imagenes: req.body.imagenes,
+        comentarios: req.body.comentarios
     };
     producto_model_1.Producto.create(producto)
         .then(function (productoDB) { return resp.json({ ok: true, mensaje: productoDB }); })
@@ -71,7 +75,7 @@ productoRoutes.put('', function (req, resp) {
         if (err)
             throw err;
         if (!productoDB) {
-            resp.json({ ok: false, mensaje: "No existe una producto con ese ID" });
+            resp.json({ ok: false, mensaje: "No existe un producto con ese ID" });
         }
         else {
             resp.json({ ok: true, mensaje: productoDB });
@@ -83,7 +87,7 @@ productoRoutes.delete('', function (req, resp) {
         if (err)
             throw err;
         if (!productoDB) {
-            resp.json({ ok: false, mensaje: "No existe una producto con ese ID" });
+            resp.json({ ok: false, mensaje: "No existe un producto con ese ID" });
         }
         else {
             resp.json({ ok: true, mensaje: productoDB });

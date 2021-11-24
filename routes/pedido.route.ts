@@ -1,12 +1,13 @@
 import { Router } from  "express";
 import { Pedido, IProductoReferencia } from '../models/pedido.model';
+import { ICliente } from '../models/cliente.model';
 
 const pedidoRoutes = Router();
 
 interface PedidoQuery {
         fechaEmision?: Date;
         referenciasProducto?: Array<IProductoReferencia>;
-        usuario?: String;
+        cliente?: ICliente;
 };
 
 let getPedidoQuery = (req: any): PedidoQuery => {
@@ -22,8 +23,8 @@ let getPedidoQuery = (req: any): PedidoQuery => {
         query.referenciasProducto = Array<IProductoReferencia>(req.query.referenciasProducto);
     }
 
-    if(req.query.usuario != null){
-        query.usuario = String(req.query.usuario);
+    if(req.query.cliente != null){
+        query.cliente = <ICliente>(req.query.cliente);
     }
     return query;
 }
@@ -45,7 +46,7 @@ pedidoRoutes.post('' , (req, resp)=>{
     const pedido = {
         fechaEmision        : req.body.fechaEmision,
         referenciasProducto : req.body.referenciasProducto,
-        usuario             : req.body.usuario
+        cliente             : req.body.cliente
     };
 
     Pedido.create(pedido)
@@ -61,7 +62,7 @@ pedidoRoutes.put('' , (req, resp)=>{
     Pedido.findByIdAndUpdate(req.query.id, query, {new: true}, (err, pedidoDB) => {
         if ( err ) throw err;
         if (!pedidoDB) {
-            resp.json({ok: false, mensaje: "No existe una persona con ese ID" });
+            resp.json({ok: false, mensaje: "No existe un pedido con ese ID" });
         } else {
             resp.json({ok: true, mensaje: pedidoDB });
         }
@@ -75,7 +76,7 @@ pedidoRoutes.delete('' , (req, resp)=>{
     Pedido.findByIdAndDelete(req.query.id, (err: any, pedidoDB: any) => {
         if ( err ) throw err;
         if (!pedidoDB) {
-            resp.json({ok: false, mensaje: "No existe una persona con ese ID" });
+            resp.json({ok: false, mensaje: "No existe un pedido con ese ID" });
         } else {
             resp.json({ok: true, mensaje: pedidoDB });
         }

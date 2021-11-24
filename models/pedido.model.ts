@@ -1,4 +1,5 @@
 import {Schema, model, Document} from 'mongoose';
+import { clienteSchema } from './cliente.model';
 
 const productoReferncia = new Schema({
     referencia:{
@@ -20,8 +21,8 @@ const pedidoSchema  =new Schema({
         type: [productoReferncia],
         required: [true, 'El Nombre es necesario para la entidad Pedido']
     },
-    usuario: {
-        type: String,
+    cliente: {
+        type: clienteSchema,
         required: [true, 'El nombre del usuario es necesario para la entidad Pedido']
     }
 });

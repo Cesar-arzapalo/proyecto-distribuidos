@@ -6,14 +6,11 @@ var proveedorRoutes = (0, express_1.Router)();
 ;
 var getProveedorQuery = function (req) {
     var query = {};
-    if (req.query.nombre != null) {
-        query.nombre = String(req.query.nombre);
+    if (req.query.usuario != null) {
+        query.usuario = (req.query.usuario);
     }
-    if (req.query.valoracion != null) {
-        query.valoracion = Number(req.query.valoracion);
-    }
-    if (req.query.recomendaciones != null) {
-        query.recomendaciones = Number(req.query.recomendaciones);
+    if (req.query.empresa != null) {
+        query.empresa = String(req.query.empresa);
     }
     return query;
 };
@@ -25,9 +22,8 @@ proveedorRoutes.get('/', function (req, resp) {
 });
 proveedorRoutes.post('', function (req, resp) {
     var proveedor = {
-        nombre: req.body.nombre,
-        valoracion: req.body.valoracion,
-        recomendaciones: req.body.recomendaciones
+        usuario: req.body.usuario,
+        empresa: req.body.empresa
     };
     proveedor_model_1.Proveedor.create(proveedor)
         .then(function (proveedorDB) { return resp.json({ ok: true, mensaje: proveedorDB }); })
