@@ -8,7 +8,7 @@ const productoRoutes = Router();
 interface ProductoQuery {     
     nombre?: String;
     descripcion?: String;
-    caracteristicas?: Array<Object>;
+    caracteristicas?: Object;
     unidad?: String;
     precioUnidad?: Number;
     stock?: Number;
@@ -32,7 +32,7 @@ let getProductoQuery = (req: any): ProductoQuery => {
     }
 
     if(req.query.caracteristicas != null){
-        query.caracteristicas = Array<Object>(req.query.caracteristicas);
+        query.caracteristicas = <Object>(req.query.caracteristicas);
     }
 
     if(req.query.unidad != null){

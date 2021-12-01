@@ -1,5 +1,5 @@
 import {Schema, model, Document} from 'mongoose';
-import { clienteSchema } from './cliente.model';
+import { clienteSchema, ICliente } from './cliente.model';
 
 const productoReferncia = new Schema({
     referencia:{
@@ -35,7 +35,7 @@ export interface IProductoReferencia extends Document {
 interface IPedido extends Document {
     fechaEmision: Date;
     referenciasProducto: Array<IProductoReferencia>;
-    usuario: String;
+    cliente: ICliente;
 };
 
 export const Pedido = model<IPedido>('pedido', pedidoSchema);
