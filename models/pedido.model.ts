@@ -1,11 +1,56 @@
 import {Schema, model, Document} from 'mongoose';
 import { clienteSchema, ICliente } from './cliente.model';
-import { productoSchema, IProducto } from './producto.model';
+import { IProducto, productoSchema } from './producto.model';
+import { direccionSchema, tarjetaSchema, IUsuario, ITarjeta, IDireccion } from './schema/usuario.schema';
+
+const compradorSchema = new Schema({
+    nombres: {
+        type: String,
+        required: [true, 'El nombre es necesario para la entidad Comprador']
+    },
+    apellidos: {
+        type: String,
+        required: [true, 'La apellidos es necesaria para la entidad Comprador']
+    },
+    dni: {
+        type: Number,
+        required: [true, 'Las caracteristicas son necesarias para la entidad Comprador']
+    },
+    celular: {
+        type: Number,
+        required: [true, 'el celular para contactar es necesario en la entidad Comprador']
+    },
+    direccion:{
+        type: direccionSchema,
+        required: [true, 'la direccion de entrega es necesario para la entidad Comprador']
+    },
+    tarjeta:{
+        type: tarjetaSchema,
+        required:[true, 'La tarjeta de compra es necesaria para la entidad Comprador']
+    },
+    foto:{
+        type: String,
+        required: [true, 'La foto de comprador es necesario para la entidad comprador']
+    }
+})
+
 
 const productoSolicitdado = new Schema({
-    producto:{
-        type: productoSchema,
-        required:[true, 'El Producto es necesario en la Entidad Pedido']
+    nombre: {
+        type: String,
+        required: [true, 'El nombre es necesario para la entidad Producto']
+    },
+    descripcion: {
+        type: String,
+        required: [true, 'La descripcion es necesaria para la entidad Producto']
+    },
+    caracteristicas: {
+        type: Object,
+        required: [true, 'Las caracteristicas son necesarias para la entidad Producto']
+    },
+    imagenes:{
+        type: [String],
+        required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
     },
     cantidad:{
         type: Number,
@@ -22,21 +67,34 @@ const pedidoSchema  =new Schema({
         type: [productoSolicitdado],
         required: [true, 'El arreglo de productos solicitaados es necesario para la entidad Pedido']
     },
-    cliente: {
-        type: clienteSchema,
+    comprador: {
+        type: compradorSchema,
         required: [true, 'El nombre del usuario es necesario para la entidad Pedido']
     }
 });
 
+export interface IComprador extends Document {
+    nombre: IUsuario['nombres'];
+    apellidos: IUsuario['apellidos'];
+    dni: IUsuario['dni'];
+    celular:IUsuario['celulares'];
+    direccion:IDireccion;
+    tarjeta:ITarjeta;
+    foto:IUsuario['foto'];
+};
+
 export interface IProductoSolicitado extends Document {
-    producto: IProducto;
+    nombre: IProducto['nombre'];
+    descripcion: IProducto['descripcion'];
+    caracteristicas: IProducto['caracteristicas'];
+    imagenes: IProducto['imagenes'];
     cantidad: Number;
 }
 
-interface IPedido extends Document {
+export interface IPedido extends Document {
     fechaEmision: Date;
     productoSolicitados: Array<IProductoSolicitado>;
-    cliente: ICliente;
+    comprador: IComprador;
 };
 
 export const Pedido = model<IPedido>('pedido', pedidoSchema);

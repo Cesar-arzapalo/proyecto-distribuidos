@@ -1,13 +1,12 @@
 import { Router } from  "express";
-import { Pedido, IProductoSolicitado } from '../models/pedido.model';
-import { ICliente } from '../models/cliente.model';
+import { Pedido, IProductoSolicitado, IComprador } from '../models/pedido.model';
 
 const pedidoRoutes = Router();
 
 interface PedidoQuery {
         fechaEmision?: Date;
         productoSolicitados?: Array<IProductoSolicitado>;
-        cliente?: ICliente;
+        comprador?: IComprador;
 };
 
 let getPedidoQuery = (req: any): PedidoQuery => {
@@ -23,8 +22,8 @@ let getPedidoQuery = (req: any): PedidoQuery => {
         query.productoSolicitados = Array<IProductoSolicitado>(req.query.productoSolicitados);
     }
 
-    if(req.query.cliente != null){
-        query.cliente = <ICliente>(req.query.cliente);
+    if(req.query.comprador != null){
+        query.comprador = <IComprador>(req.query.comprador);
     }
     return query;
 }
@@ -46,7 +45,7 @@ pedidoRoutes.post('' , (req, resp)=>{
     const pedido = {
         fechaEmision        : req.body.fechaEmision,
         productoSolicitados : req.body.productoSolicitados,
-        cliente             : req.body.cliente
+        comprador           : req.body.comprador
     };
 
     Pedido.create(pedido)

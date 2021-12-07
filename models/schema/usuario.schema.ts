@@ -1,6 +1,6 @@
 import {Schema, Document} from 'mongoose';
 
-const tarjetaSchema  =new Schema({
+export const tarjetaSchema  =new Schema({
     numero: {
         type: Number,
         required: [true, 'El numero de la tarjeta es necesaria para la entidad Tarjeta']
@@ -15,7 +15,7 @@ const tarjetaSchema  =new Schema({
     }
 });
 
-const direccionSchema  =new Schema({
+export const direccionSchema  =new Schema({
     direccion: {
         type: String,
         required: [true, 'La direccion es necesaria para la entidad Direccion']
@@ -31,7 +31,7 @@ const direccionSchema  =new Schema({
 });
 
 export const UsuarioSchema  =new Schema({
-    nombre: {
+    nombres: {
         type: String,
     },
     apellidos: {
@@ -40,11 +40,23 @@ export const UsuarioSchema  =new Schema({
     correo: {
         type: String,
     },
+    dni: {
+        type: Number,
+        required: [true, 'El dni del usuario es ncesario en la entidad usuario']
+    },
+    celulares:{
+        type: [Number],
+        required:[true, 'El aray de celulares ess necesario para la entidad usuario']
+    },
     direcciones: {
         type: [direccionSchema],
     },
     tarjetas:{
         type: [tarjetaSchema]
+    },
+    foto:{
+        type: String,
+        required: [true, 'La foto del usuario es necesario para la entidad usuario']
     }
 });
 
@@ -54,16 +66,19 @@ export interface ITarjeta extends Document {
     ccv: Number;
 };
 
-export interface IDireaccion extends Document {
+export interface IDireccion extends Document {
     direccion: String;
     distrito: String;
     codigo_postal: String;
 };
 
 export interface IUsuario extends Document {
-    nombre: String;
+    nombres: String;
     apellidos: String;
     correo: String;
-    direcciones: Array<IDireaccion>;
+    dni:Number;
+    celulares:Array<Number>
+    direcciones: Array<IDireccion>;
     tarjetas: Array<ITarjeta>;
+    foto: String;
 };
