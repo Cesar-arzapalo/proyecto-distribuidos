@@ -1,7 +1,7 @@
 import {Schema, model, Document, Mixed} from 'mongoose';
 import { comentarioSchema, IComentario } from './schema/comentario.schema';
 
-const productoSchema  =new Schema({
+export const productoSchema  =new Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es necesario para la entidad Producto']
@@ -51,7 +51,7 @@ const productoSchema  =new Schema({
         required: [true, 'El arreglo de comentarios de los productos es necesario para la entidad Producto']
     }
 });
-interface IProducto extends Document {
+export interface IProducto extends Document {
     nombre: String;
     descripcion: String;
     caracteristicas: Object;

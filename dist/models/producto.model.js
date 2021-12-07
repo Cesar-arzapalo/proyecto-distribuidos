@@ -13,7 +13,7 @@ var productoSchema = new mongoose_1.Schema({
         required: [true, 'La descripcion es necesaria para la entidad Producto']
     },
     caracteristicas: {
-        type: [Object],
+        type: Object,
         required: [true, 'Las caracteristicas son necesarias para la entidad Producto']
     },
     unidad: {

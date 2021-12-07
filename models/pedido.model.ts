@@ -1,10 +1,11 @@
 import {Schema, model, Document} from 'mongoose';
 import { clienteSchema, ICliente } from './cliente.model';
+import { productoSchema, IProducto } from './producto.model';
 
-const productoReferncia = new Schema({
-    referencia:{
-        type: String,
-        required:[true, 'La referencia del Producto solicitado es necesario en la Entidad Pedido']
+const productoSolicitdado = new Schema({
+    producto:{
+        type: productoSchema,
+        required:[true, 'El Producto es necesario en la Entidad Pedido']
     },
     cantidad:{
         type: Number,
@@ -17,9 +18,9 @@ const pedidoSchema  =new Schema({
         type: Date,
         required: [true, 'La fecha de emision es necesario para la entidad Pedido']
     },
-    referenciasProducto: {
-        type: [productoReferncia],
-        required: [true, 'El Nombre es necesario para la entidad Pedido']
+    productoSolicitados: {
+        type: [productoSolicitdado],
+        required: [true, 'El arreglo de productos solicitaados es necesario para la entidad Pedido']
     },
     cliente: {
         type: clienteSchema,
@@ -27,14 +28,14 @@ const pedidoSchema  =new Schema({
     }
 });
 
-export interface IProductoReferencia extends Document {
-    referencia: String;
+export interface IProductoSolicitado extends Document {
+    producto: IProducto;
     cantidad: Number;
 }
 
 interface IPedido extends Document {
     fechaEmision: Date;
-    referenciasProducto: Array<IProductoReferencia>;
+    productoSolicitados: Array<IProductoSolicitado>;
     cliente: ICliente;
 };
 
