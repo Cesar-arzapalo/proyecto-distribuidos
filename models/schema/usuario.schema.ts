@@ -40,7 +40,7 @@ export const UsuarioSchema  =new Schema({
     correo: {
         type: String,
     },
-    direccion: {
+    direcciones: {
         type: [direccionSchema],
     },
     tarjetas:{
@@ -64,6 +64,6 @@ export interface IUsuario extends Document {
     nombre: String;
     apellidos: String;
     correo: String;
-    direccion: Array<IDireaccion>;
-    tarjeta: Array<ITarjeta>;
+    direcciones: Array<IDireaccion>;
+    tarjetas: Array<ITarjeta>;
 };
