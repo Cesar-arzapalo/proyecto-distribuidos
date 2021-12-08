@@ -13,7 +13,7 @@ var getProductoQuery = function (req) {
         query.descripcion = String(req.query.descripcion);
     }
     if (req.query.caracteristicas != null) {
-        query.caracteristicas = Array(req.query.caracteristicas);
+        query.caracteristicas = (req.query.caracteristicas);
     }
     if (req.query.unidad != null) {
         query.unidad = String(req.query.unidad);

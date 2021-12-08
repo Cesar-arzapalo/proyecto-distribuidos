@@ -10,11 +10,11 @@ var getPedidoQuery = function (req) {
     if (req.query.fechaEmision != null) {
         query.fechaEmision = new Date(req.query.fechaEmision);
     }
-    if (req.query.referenciasProducto != null) {
-        query.referenciasProducto = Array(req.query.referenciasProducto);
+    if (req.query.productoSolicitados != null) {
+        query.productoSolicitados = Array(req.query.productoSolicitados);
     }
-    if (req.query.cliente != null) {
-        query.cliente = (req.query.cliente);
+    if (req.query.comprador != null) {
+        query.comprador = (req.query.comprador);
     }
     return query;
 };
@@ -27,8 +27,8 @@ pedidoRoutes.get('/', function (req, resp) {
 pedidoRoutes.post('', function (req, resp) {
     var pedido = {
         fechaEmision: req.body.fechaEmision,
-        referenciasProducto: req.body.referenciasProducto,
-        cliente: req.body.cliente
+        productoSolicitados: req.body.productoSolicitados,
+        comprador: req.body.comprador
     };
     pedido_model_1.Pedido.create(pedido)
         .then(function (pedidoDB) { return resp.json({ ok: true, mensaje: pedidoDB }); })

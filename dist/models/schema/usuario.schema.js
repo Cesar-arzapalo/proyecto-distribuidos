@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsuarioSchema = void 0;
+exports.UsuarioSchema = exports.direccionSchema = exports.tarjetaSchema = void 0;
 var mongoose_1 = require("mongoose");
-var tarjetaSchema = new mongoose_1.Schema({
+exports.tarjetaSchema = new mongoose_1.Schema({
     numero: {
         type: Number,
         required: [true, 'El numero de la tarjeta es necesaria para la entidad Tarjeta']
@@ -16,7 +16,7 @@ var tarjetaSchema = new mongoose_1.Schema({
         required: [true, 'El codigo de 3 digitos es necesaria para la entidad Tarjeta']
     }
 });
-var direccionSchema = new mongoose_1.Schema({
+exports.direccionSchema = new mongoose_1.Schema({
     direccion: {
         type: String,
         required: [true, 'La direccion es necesaria para la entidad Direccion']
@@ -31,7 +31,7 @@ var direccionSchema = new mongoose_1.Schema({
     }
 });
 exports.UsuarioSchema = new mongoose_1.Schema({
-    nombre: {
+    nombres: {
         type: String,
     },
     apellidos: {
@@ -40,11 +40,23 @@ exports.UsuarioSchema = new mongoose_1.Schema({
     correo: {
         type: String,
     },
-    direccion: {
-        type: [direccionSchema],
+    dni: {
+        type: Number,
+        required: [true, 'El dni del usuario es ncesario en la entidad usuario']
+    },
+    celulares: {
+        type: [Number],
+        required: [true, 'El aray de celulares ess necesario para la entidad usuario']
+    },
+    direcciones: {
+        type: [exports.direccionSchema],
     },
     tarjetas: {
-        type: [tarjetaSchema]
+        type: [exports.tarjetaSchema]
+    },
+    foto: {
+        type: String,
+        required: [true, 'La foto del usuario es necesario para la entidad usuario']
     }
 });
 ;
