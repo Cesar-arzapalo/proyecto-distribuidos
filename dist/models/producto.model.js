@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Producto = exports.productoSchema = void 0;
 var mongoose_1 = require("mongoose");
-var comentario_schema_1 = require("./schema/comentario.schema");
 exports.productoSchema = new mongoose_1.Schema({
     nombre: {
         type: String,
@@ -47,10 +46,6 @@ exports.productoSchema = new mongoose_1.Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
-    },
-    comentarios: {
-        type: [comentario_schema_1.comentarioSchema],
-        required: [true, 'El arreglo de comentarios de los productos es necesario para la entidad Producto']
     }
 });
 ;

@@ -17,7 +17,6 @@ interface ProductoQuery {
     idCategoria?: String;
     idProveedor?: String;
     imagenes?: Array<String>;
-    comentarios?: Array<IComentario>;
 };
 
 let getProductoQuery = (req: any): ProductoQuery => {
@@ -66,10 +65,6 @@ let getProductoQuery = (req: any): ProductoQuery => {
     if(req.query.imagenes != null){
         query.imagenes = Array<String>(req.query.imagenes);
     }
-
-    if(req.query.comentarios != null){
-        query.comentarios = Array<IComentario>(req.query.comentarios);
-    }
     return query;
 }
 
@@ -96,22 +91,21 @@ productoRoutes.post('' , (req, resp)=>{
         visitas         : req.body.visitas,
         idCategoria     : req.body.idCategoria,
         idProveedor     : req.body.idProveedor,
-        imagenes        : req.body.imagenes,
-        comentarios     : req.body.comentarios
+        imagenes        : req.body.imagenes
     };
-
 
     Producto.create(producto)
         .then(productoDB => resp.json({ok: true, mensaje: productoDB }) )
         .catch(err => resp.json({ok: false, mensaje: err }));
-
     
 });
 
 productoRoutes.put('' , (req, resp)=>{
+    console.log(req.query)
     let query: ProductoQuery = getProductoQuery(req);
 
     Producto.findByIdAndUpdate(req.query.id, query, {new: true}, (err, productoDB) => {
+        
         if ( err ) throw err;
         if (!productoDB) {
             resp.json({ok: false, mensaje: "No existe un producto con ese ID" });

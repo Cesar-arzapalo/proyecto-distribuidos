@@ -45,10 +45,6 @@ export const productoSchema  =new Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
-    },
-    comentarios: {
-        type: [comentarioSchema],
-        required: [true, 'El arreglo de comentarios de los productos es necesario para la entidad Producto']
     }
 });
 export interface IProducto extends Document {
@@ -63,7 +59,6 @@ export interface IProducto extends Document {
     idCategoria: String;
     idProveedor: String;
     imagenes: Array<String>;
-    comentarios: Array <IComentario>
 };
 
 export const Producto = model<IProducto>('producto', productoSchema);

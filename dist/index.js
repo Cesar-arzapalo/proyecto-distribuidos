@@ -31,5 +31,5 @@ mongoose_1.default.connect('mongodb+srv://admin:12345@cluster0.bcg8b.mongodb.net
 });
 //levantar express
 servidor.start(function () {
-    console.log("Servidor de la base de datos corriendo en el puerto " + servidor.port);
+    console.log("Servidor de la base de datos corriendo en el puerto ".concat(servidor.port));
 });

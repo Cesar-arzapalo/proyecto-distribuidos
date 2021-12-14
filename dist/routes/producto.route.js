@@ -39,9 +39,6 @@ var getProductoQuery = function (req) {
     if (req.query.imagenes != null) {
         query.imagenes = Array(req.query.imagenes);
     }
-    if (req.query.comentarios != null) {
-        query.comentarios = Array(req.query.comentarios);
-    }
     return query;
 };
 productoRoutes.get('/', function (req, resp) {
@@ -62,14 +59,14 @@ productoRoutes.post('', function (req, resp) {
         visitas: req.body.visitas,
         idCategoria: req.body.idCategoria,
         idProveedor: req.body.idProveedor,
-        imagenes: req.body.imagenes,
-        comentarios: req.body.comentarios
+        imagenes: req.body.imagenes
     };
     producto_model_1.Producto.create(producto)
         .then(function (productoDB) { return resp.json({ ok: true, mensaje: productoDB }); })
         .catch(function (err) { return resp.json({ ok: false, mensaje: err }); });
 });
 productoRoutes.put('', function (req, resp) {
+    console.log(req.query);
     var query = getProductoQuery(req);
     producto_model_1.Producto.findByIdAndUpdate(req.query.id, query, { new: true }, function (err, productoDB) {
         if (err)
