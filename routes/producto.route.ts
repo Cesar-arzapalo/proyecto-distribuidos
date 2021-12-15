@@ -80,7 +80,8 @@ productoRoutes.get('/' , (req, resp)=>{
 
 productoRoutes.post('' , (req, resp)=>{
     
-    const producto = {     
+    const producto = {
+        _id             : req.body._id,     
         nombre          : req.body.nombre,
         descripcion     : req.body.descripcion,
         caracteristicas : req.body.caracteristicas,

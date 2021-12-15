@@ -49,6 +49,7 @@ productoRoutes.get('/', function (req, resp) {
 });
 productoRoutes.post('', function (req, resp) {
     var producto = {
+        _id: req.body._id,
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
         caracteristicas: req.body.caracteristicas,

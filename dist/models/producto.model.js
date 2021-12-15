@@ -46,6 +46,9 @@ exports.productoSchema = new mongoose_1.Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
+    },
+    _id: {
+        type: String
     }
 });
 ;

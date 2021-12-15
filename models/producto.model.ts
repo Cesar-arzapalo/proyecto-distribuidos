@@ -45,6 +45,9 @@ export const productoSchema  =new Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
+    },
+    _id:{
+        type: String
     }
 });
 export interface IProducto extends Document {
@@ -59,6 +62,7 @@ export interface IProducto extends Document {
     idCategoria: String;
     idProveedor: String;
     imagenes: Array<String>;
+    _id?:String;
 };
 
 export const Producto = model<IProducto>('producto', productoSchema);
