@@ -13,7 +13,7 @@ var getProductoQuery = function (req) {
         query.descripcion = String(req.query.descripcion);
     }
     if (req.query.caracteristicas != null) {
-        query.caracteristicas = Array(req.query.caracteristicas);
+        query.caracteristicas = (req.query.caracteristicas);
     }
     if (req.query.unidad != null) {
         query.unidad = String(req.query.unidad);
@@ -49,6 +49,7 @@ productoRoutes.get('/', function (req, resp) {
 });
 productoRoutes.post('', function (req, resp) {
     var producto = {
+        _id: req.body._id,
         nombre: req.body.nombre,
         descripcion: req.body.descripcion,
         caracteristicas: req.body.caracteristicas,
@@ -66,12 +67,13 @@ productoRoutes.post('', function (req, resp) {
         .catch(function (err) { return resp.json({ ok: false, mensaje: err }); });
 });
 productoRoutes.put('', function (req, resp) {
+    console.log(req.query);
     var query = getProductoQuery(req);
     producto_model_1.Producto.findByIdAndUpdate(req.query.id, query, { new: true }, function (err, productoDB) {
         if (err)
             throw err;
         if (!productoDB) {
-            resp.json({ ok: false, mensaje: "No existe una producto con ese ID" });
+            resp.json({ ok: false, mensaje: "No existe un producto con ese ID" });
         }
         else {
             resp.json({ ok: true, mensaje: productoDB });
@@ -83,7 +85,7 @@ productoRoutes.delete('', function (req, resp) {
         if (err)
             throw err;
         if (!productoDB) {
-            resp.json({ ok: false, mensaje: "No existe una producto con ese ID" });
+            resp.json({ ok: false, mensaje: "No existe un producto con ese ID" });
         }
         else {
             resp.json({ ok: true, mensaje: productoDB });

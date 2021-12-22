@@ -11,7 +11,7 @@ var pedido_route_1 = __importDefault(require("./routes/pedido.route"));
 var producto_route_1 = __importDefault(require("./routes/producto.route"));
 var proveedor_route_1 = __importDefault(require("./routes/proveedor.route"));
 var cors_1 = __importDefault(require("cors"));
-var PORT = +process.env.PORT || 3200;
+var PORT = +process.env.PORT || 2800;
 var servidor = new server_1.Server(PORT);
 //Body parser
 servidor.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -31,5 +31,5 @@ mongoose_1.default.connect('mongodb+srv://admin:12345@cluster0.bcg8b.mongodb.net
 });
 //levantar express
 servidor.start(function () {
-    console.log("Servidor de la base de datos corriendo en el puerto " + servidor.port);
+    console.log("Servidor de la base de datos corriendo en el puerto ".concat(servidor.port));
 });

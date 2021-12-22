@@ -1,6 +1,7 @@
-import {Schema, model, Document} from 'mongoose';
+import {Schema, model, Document, Mixed} from 'mongoose';
+import { comentarioSchema, IComentario } from './schema/comentario.schema';
 
-const productoSchema  =new Schema({
+export const productoSchema  =new Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es necesario para la entidad Producto']
@@ -10,7 +11,7 @@ const productoSchema  =new Schema({
         required: [true, 'La descripcion es necesaria para la entidad Producto']
     },
     caracteristicas: {
-        type: [Object],
+        type: Object,
         required: [true, 'Las caracteristicas son necesarias para la entidad Producto']
     },
     unidad: {
@@ -44,13 +45,15 @@ const productoSchema  =new Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
+    },
+    _id:{
+        type: String
     }
 });
-
-interface IProducto extends Document {
+export interface IProducto extends Document {
     nombre: String;
     descripcion: String;
-    caracteristicas: Array<Object>;
+    caracteristicas: Object;
     unidad: String;
     precioUnidad: Number;
     stock: Number;
@@ -59,6 +62,7 @@ interface IProducto extends Document {
     idCategoria: String;
     idProveedor: String;
     imagenes: Array<String>;
+    _id?:String;
 };
 
 export const Producto = model<IProducto>('producto', productoSchema);

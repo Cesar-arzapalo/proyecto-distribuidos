@@ -1,5 +1,6 @@
 import { Router } from  "express";
 import { Producto } from '../models/producto.model';
+import { IComentario } from '../models/schema/comentario.schema';
 
 const productoRoutes = Router();
 
@@ -7,7 +8,7 @@ const productoRoutes = Router();
 interface ProductoQuery {     
     nombre?: String;
     descripcion?: String;
-    caracteristicas?: Array<Object>;
+    caracteristicas?: Object;
     unidad?: String;
     precioUnidad?: Number;
     stock?: Number;
@@ -30,7 +31,7 @@ let getProductoQuery = (req: any): ProductoQuery => {
     }
 
     if(req.query.caracteristicas != null){
-        query.caracteristicas = Array<Object>(req.query.caracteristicas);
+        query.caracteristicas = <Object>(req.query.caracteristicas);
     }
 
     if(req.query.unidad != null){
@@ -79,7 +80,8 @@ productoRoutes.get('/' , (req, resp)=>{
 
 productoRoutes.post('' , (req, resp)=>{
     
-    const producto = {     
+    const producto = {
+        _id             : req.body._id,     
         nombre          : req.body.nombre,
         descripcion     : req.body.descripcion,
         caracteristicas : req.body.caracteristicas,
@@ -93,21 +95,21 @@ productoRoutes.post('' , (req, resp)=>{
         imagenes        : req.body.imagenes
     };
 
-
     Producto.create(producto)
         .then(productoDB => resp.json({ok: true, mensaje: productoDB }) )
         .catch(err => resp.json({ok: false, mensaje: err }));
-
     
 });
 
 productoRoutes.put('' , (req, resp)=>{
+    console.log(req.query)
     let query: ProductoQuery = getProductoQuery(req);
 
     Producto.findByIdAndUpdate(req.query.id, query, {new: true}, (err, productoDB) => {
+        
         if ( err ) throw err;
         if (!productoDB) {
-            resp.json({ok: false, mensaje: "No existe una producto con ese ID" });
+            resp.json({ok: false, mensaje: "No existe un producto con ese ID" });
         } else {
             resp.json({ok: true, mensaje: productoDB });
         }
@@ -120,7 +122,7 @@ productoRoutes.delete('' , (req, resp)=>{
     Producto.findByIdAndDelete(req.query.id, (err: any, productoDB: any) => {
         if ( err ) throw err;
         if (!productoDB) {
-            resp.json({ok: false, mensaje: "No existe una producto con ese ID" });
+            resp.json({ok: false, mensaje: "No existe un producto con ese ID" });
         } else {
             resp.json({ok: true, mensaje: productoDB });
         }

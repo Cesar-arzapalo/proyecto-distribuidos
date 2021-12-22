@@ -1,9 +1,9 @@
-import {Schema, model, Document} from 'mongoose';
-import { clienteSchema, ICliente } from './cliente.model';
-import { IProducto, productoSchema } from './producto.model';
-import { direccionSchema, tarjetaSchema, IUsuario, ITarjeta, IDireccion } from './schema/usuario.schema';
-
-const compradorSchema = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Pedido = void 0;
+var mongoose_1 = require("mongoose");
+var usuario_schema_1 = require("./schema/usuario.schema");
+var compradorSchema = new mongoose_1.Schema({
     nombres: {
         type: String,
         required: [true, 'El nombre es necesario para la entidad Comprador']
@@ -20,22 +20,20 @@ const compradorSchema = new Schema({
         type: Number,
         required: [true, 'el celular para contactar es necesario en la entidad Comprador']
     },
-    direccion:{
-        type: direccionSchema,
+    direccion: {
+        type: usuario_schema_1.direccionSchema,
         required: [true, 'la direccion de entrega es necesario para la entidad Comprador']
     },
-    tarjeta:{
-        type: tarjetaSchema,
-        required:[true, 'La tarjeta de compra es necesaria para la entidad Comprador']
+    tarjeta: {
+        type: usuario_schema_1.tarjetaSchema,
+        required: [true, 'La tarjeta de compra es necesaria para la entidad Comprador']
     },
-    foto:{
+    foto: {
         type: String,
         required: [true, 'La foto de comprador es necesario para la entidad comprador']
     }
-})
-
-
-const productoSolicitdado = new Schema({
+});
+var productoSolicitdado = new mongoose_1.Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es necesario para la entidad Producto']
@@ -48,17 +46,16 @@ const productoSolicitdado = new Schema({
         type: Object,
         required: [true, 'Las caracteristicas son necesarias para la entidad Producto']
     },
-    imagenes:{
+    imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
     },
-    cantidad:{
+    cantidad: {
         type: Number,
-        required:[true, 'La cantidad del porducto comprado es necesario para la entidad Pedido']
+        required: [true, 'La cantidad del porducto comprado es necesario para la entidad Pedido']
     }
-})
-
-const pedidoSchema  =new Schema({
+});
+var pedidoSchema = new mongoose_1.Schema({
     fechaEmision: {
         type: Date,
         required: [true, 'La fecha de emision es necesario para la entidad Pedido']
@@ -72,29 +69,6 @@ const pedidoSchema  =new Schema({
         required: [true, 'El nombre del usuario es necesario para la entidad Pedido']
     }
 });
-
-export interface IComprador extends Document {
-    nombre: IUsuario['nombres'];
-    apellidos: IUsuario['apellidos'];
-    dni: IUsuario['dni'];
-    celular:IUsuario['celulares'];
-    direccion:IDireccion;
-    tarjeta:ITarjeta;
-    foto:IUsuario['foto'];
-};
-
-export interface IProductoSolicitado extends Document {
-    nombre: IProducto['nombre'];
-    descripcion: IProducto['descripcion'];
-    caracteristicas: IProducto['caracteristicas'];
-    imagenes: IProducto['imagenes'];
-    cantidad: Number;
-}
-
-export interface IPedido extends Document {
-    fechaEmision: Date;
-    productoSolicitados: Array<IProductoSolicitado>;
-    comprador: IComprador;
-};
-
-export const Pedido = model<IPedido>('pedido', pedidoSchema);
+;
+;
+exports.Pedido = (0, mongoose_1.model)('pedido', pedidoSchema);

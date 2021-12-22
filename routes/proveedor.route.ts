@@ -1,28 +1,24 @@
 import { Router } from  "express";
 import { Proveedor } from '../models/proveedor.model';
+import { IUsuario } from '../models/schema/usuario.schema';
 
 const proveedorRoutes = Router();
 
 
 interface ProveedoraQuery {
-    nombre?: String;
-    valoracion?: Number;
-    recomendaciones?: Number;
+    usuario?: IUsuario;
+    empresa?: String;
 };
 
 let getProveedorQuery = (req: any): ProveedoraQuery => {
     let query: ProveedoraQuery = {}; 
     
-    if(req.query.nombre != null){
-        query.nombre = String(req.query.nombre);
+    if(req.query.usuario != null){
+        query.usuario = <IUsuario>(req.query.usuario);
     }
 
-    if(req.query.valoracion != null){
-        query.valoracion = Number(req.query.valoracion);
-    }
-
-    if(req.query.recomendaciones != null){
-        query.recomendaciones = Number(req.query.recomendaciones);
+    if(req.query.empresa != null){
+        query.empresa = String(req.query.empresa);
     }
     return query;
 }
@@ -40,9 +36,8 @@ proveedorRoutes.get('/' , (req, resp)=>{
 proveedorRoutes.post('' , (req, resp)=>{
     
     const proveedor = {
-        nombre          : req.body.nombre,
-        valoracion      : req.body.valoracion,
-        recomendaciones : req.body.recomendaciones
+        usuario         : req.body.usuario,
+        empresa         : req.body.empresa
     };
 
     Proveedor.create(proveedor)

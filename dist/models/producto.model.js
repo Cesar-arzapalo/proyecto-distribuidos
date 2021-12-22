@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Producto = void 0;
+exports.Producto = exports.productoSchema = void 0;
 var mongoose_1 = require("mongoose");
-var productoSchema = new mongoose_1.Schema({
+exports.productoSchema = new mongoose_1.Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es necesario para la entidad Producto']
@@ -12,7 +12,7 @@ var productoSchema = new mongoose_1.Schema({
         required: [true, 'La descripcion es necesaria para la entidad Producto']
     },
     caracteristicas: {
-        type: [Object],
+        type: Object,
         required: [true, 'Las caracteristicas son necesarias para la entidad Producto']
     },
     unidad: {
@@ -46,7 +46,10 @@ var productoSchema = new mongoose_1.Schema({
     imagenes: {
         type: [String],
         required: [true, 'El arreglo de imagenes de los productos es necesario para la entidad Producto']
+    },
+    _id: {
+        type: String
     }
 });
 ;
-exports.Producto = (0, mongoose_1.model)('producto', productoSchema);
+exports.Producto = (0, mongoose_1.model)('producto', exports.productoSchema);

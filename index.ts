@@ -10,7 +10,7 @@ import proveedorRoutes from './routes/proveedor.route';
 import cors  from 'cors';
 
 
-const PORT = +process.env.PORT! || 3200;
+const PORT = +process.env.PORT! || 2800;
 const servidor = new Server(PORT);
 
 // Decorador
