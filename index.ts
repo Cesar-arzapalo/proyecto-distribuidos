@@ -16,6 +16,7 @@ const servidor = new Server(PORT);
 servidor.app.use(bodyParser.urlencoded({extended:true}));
 servidor.app.use(bodyParser.json());
 
+const conexion = Singleton.getInstance()
 //Cors 
 
 servidor.app.use(cors());
@@ -27,7 +28,7 @@ servidor.app.use('/producto', productoRoutes);
 servidor.app.use('/proveedor', proveedorRoutes);
 
 //conectar db
-mongoose.connect('mongodb+srv://admin:12345@cluster0.bcg8b.mongodb.net/proyecto?retryWrites=true&w=majority',
+mongoose.connect(conexion.getConexion(),
                 {useNewUrlParser: true, useUnifiedTopology: true}  as ConnectOptions, (err) =>{
                     if (err) throw err;
                     console.log('Base de datos en linea');

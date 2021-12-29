@@ -16,6 +16,7 @@ var servidor = new server_1.Server(PORT);
 //Body parser
 servidor.app.use(body_parser_1.default.urlencoded({ extended: true }));
 servidor.app.use(body_parser_1.default.json());
+var conexion = Singleton.getInstance();
 //Cors 
 servidor.app.use((0, cors_1.default)());
 //rutas del app
@@ -24,7 +25,7 @@ servidor.app.use('/pedido', pedido_route_1.default);
 servidor.app.use('/producto', producto_route_1.default);
 servidor.app.use('/proveedor', proveedor_route_1.default);
 //conectar db
-mongoose_1.default.connect('mongodb+srv://admin:12345@cluster0.bcg8b.mongodb.net/proyecto?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
+mongoose_1.default.connect(conexion.getConexion(), { useNewUrlParser: true, useUnifiedTopology: true }, function (err) {
     if (err)
         throw err;
     console.log('Base de datos en linea');
