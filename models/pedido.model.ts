@@ -69,7 +69,7 @@ const pedidoSchema  =new Schema({
     },
     comprador: {
         type: compradorSchema,
-        required: [true, 'El nombre del usuario es necesario para la entidad Pedido']
+        required: [true, 'Los datos del comprador son necesario para la entidad Pedido']
     }
 });
 

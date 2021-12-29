@@ -30,6 +30,7 @@ pedidoRoutes.post('', function (req, resp) {
         productoSolicitados: req.body.productoSolicitados,
         comprador: req.body.comprador
     };
+    console.log(pedido, req.body);
     pedido_model_1.Pedido.create(pedido)
         .then(function (pedidoDB) { return resp.json({ ok: true, mensaje: pedidoDB }); })
         .catch(function (err) { return resp.json({ ok: false, mensaje: err }); });

@@ -48,6 +48,8 @@ pedidoRoutes.post('' , (req, resp)=>{
         comprador           : req.body.comprador
     };
 
+    console.log(pedido,req.body)
+
     Pedido.create(pedido)
         .then(pedidoDB => resp.json({ok: true, mensaje: pedidoDB }) )
         .catch(err => resp.json({ok: false, mensaje: err }));
