@@ -1,5 +1,6 @@
 import { Server } from './server/server';
 import { ServerExttend } from './server/serverExtend';
+import {Singleton} from './conexion_mongo';
 
 import mongoose, {ConnectOptions} from 'mongoose';
 import bodyParser from 'body-parser';
