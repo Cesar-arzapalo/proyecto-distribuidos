@@ -62,6 +62,7 @@ productoRoutes.post('', function (req, resp) {
         idProveedor: req.body.idProveedor,
         imagenes: req.body.imagenes
     };
+    console.log(producto);
     producto_model_1.Producto.create(producto)
         .then(function (productoDB) { return resp.json({ ok: true, mensaje: productoDB }); })
         .catch(function (err) { return resp.json({ ok: false, mensaje: err }); });

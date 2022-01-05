@@ -95,6 +95,9 @@ productoRoutes.post('' , (req, resp)=>{
         imagenes        : req.body.imagenes
     };
 
+    console.log(producto);
+
+    
     Producto.create(producto)
         .then(productoDB => resp.json({ok: true, mensaje: productoDB }) )
         .catch(err => resp.json({ok: false, mensaje: err }));
