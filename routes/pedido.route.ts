@@ -51,7 +51,7 @@ pedidoRoutes.post('' , (req, resp)=>{
     console.log(pedido,req.body)
 
     Pedido.create(pedido)
-        .then(pedidoDB => resp.json({ok: true, mensaje: pedidoDB }) )
+        .then(async (pedidoDB) => resp.json({ok: true, mensaje: pedidoDB }))
         .catch(err => resp.json({ok: false, mensaje: err }));
 
     

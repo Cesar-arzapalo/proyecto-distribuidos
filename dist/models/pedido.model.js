@@ -53,6 +53,10 @@ var productoSolicitdado = new mongoose_1.Schema({
     cantidad: {
         type: Number,
         required: [true, 'La cantidad del porducto comprado es necesario para la entidad Pedido']
+    },
+    precioUnidad: {
+        type: Number,
+        required: [true, 'El precio del porducto comprado es necesario para la entidad Pedido']
     }
 });
 var pedidoSchema = new mongoose_1.Schema({

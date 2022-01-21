@@ -55,6 +55,10 @@ const productoSolicitdado = new Schema({
     cantidad:{
         type: Number,
         required:[true, 'La cantidad del porducto comprado es necesario para la entidad Pedido']
+    },
+    precioUnidad:{
+        type: Number,
+        required:[true, 'El precio del porducto comprado es necesario para la entidad Pedido']
     }
 })
 
@@ -89,6 +93,7 @@ export interface IProductoSolicitado extends Document {
     caracteristicas: IProducto['caracteristicas'];
     imagenes: IProducto['imagenes'];
     cantidad: Number;
+    precioUnidad: Number;
 }
 
 export interface IPedido extends Document {
