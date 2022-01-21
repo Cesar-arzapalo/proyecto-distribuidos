@@ -77,7 +77,7 @@ export interface IComprador extends Document {
     nombre: IUsuario['nombres'];
     apellidos: IUsuario['apellidos'];
     dni: IUsuario['dni'];
-    celular:IUsuario['celulares'];
+    celular: Number;
     direccion:IDireccion;
     tarjeta:ITarjeta;
     foto:IUsuario['foto'];
