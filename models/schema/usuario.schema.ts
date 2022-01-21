@@ -62,7 +62,7 @@ export const UsuarioSchema  =new Schema({
 
 export interface ITarjeta extends Document {
     numero: Number;
-    fecha_vencimimento: Date;
+    fecha_vencimiento: Date;
     ccv: Number;
 };
 
