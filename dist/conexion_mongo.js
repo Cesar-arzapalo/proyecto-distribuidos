@@ -11,7 +11,7 @@ var Singleton = /** @class */ (function () {
         return Singleton.instance;
     };
     Singleton.prototype.getConexion = function () {
-        return 'mongodb+srv://admin:12345@cluster0.bcg8b.mongodb.net/proyecto?retryWrites=true&w=majority';
+        return 'mongodb+srv://aptir:JvE0AEJYaxMtxqaz@cluster0.fnwct.mongodb.net/PostresNaturales?retryWrites=true&w=majority';
     };
     return Singleton;
 }());
