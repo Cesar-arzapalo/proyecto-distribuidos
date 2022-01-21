@@ -24,10 +24,6 @@ var compradorSchema = new mongoose_1.Schema({
         type: usuario_schema_1.direccionSchema,
         required: [true, 'la direccion de entrega es necesario para la entidad Comprador']
     },
-    tarjeta: {
-        type: usuario_schema_1.tarjetaSchema,
-        required: [true, 'La tarjeta de compra es necesaria para la entidad Comprador']
-    },
     foto: {
         type: String,
         required: [true, 'La foto de comprador es necesario para la entidad comprador']

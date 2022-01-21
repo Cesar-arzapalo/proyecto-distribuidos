@@ -24,10 +24,6 @@ const compradorSchema = new Schema({
         type: direccionSchema,
         required: [true, 'la direccion de entrega es necesario para la entidad Comprador']
     },
-    tarjeta:{
-        type: tarjetaSchema,
-        required:[true, 'La tarjeta de compra es necesaria para la entidad Comprador']
-    },
     foto:{
         type: String,
         required: [true, 'La foto de comprador es necesario para la entidad comprador']
@@ -83,7 +79,6 @@ export interface IComprador extends Document {
     dni: IUsuario['dni'];
     celular: Number;
     direccion:IDireccion;
-    tarjeta:ITarjeta;
     foto:IUsuario['foto'];
 };
 
